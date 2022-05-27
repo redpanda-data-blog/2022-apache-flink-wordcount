@@ -1,0 +1,49 @@
+version: "3"
+
+services:
+  redpanda-1:
+    hostname: redpanda-1
+    command:
+    - redpanda
+    - start
+    - --smp
+    - '1'
+    - --reserve-memory
+    - 0M
+    - --overprovisioned
+    - --node-id
+    - '0'
+    - --kafka-addr
+    - PLAINTEXT://redpanda-1:29092,OUTSIDE://redpanda-1:9092
+    - --advertise-kafka-addr
+    - PLAINTEXT://redpanda-1:29092,OUTSIDE://redpanda-1:9092
+    image: docker.vectorized.io/vectorized/redpanda:latest
+    container_name: redpanda-1
+    ports:
+    - "9092:9092"
+    - "9644:9644"
+
+
+  jobmanager:
+    hostname: flink-jobmanager
+    image: flink:latest
+    ports:
+      - "8081:8081"
+    command: jobmanager
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+
+  taskmanager:
+    hostname: flink-taskmanager
+    image: flink:latest
+    depends_on:
+      - jobmanager
+    command: taskmanager
+    scale: 1
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+        taskmanager.numberOfTaskSlots: 2
