@@ -1,4 +1,4 @@
-# redpanda-flink-example
+# 2022-apache-flink-wordcount
 Basic set up of Redpanda, Flink and an example Java application to demonstrate stream processing between the two.
 
 First run Maven to create a quick skeleton of an Apache Flink job.
