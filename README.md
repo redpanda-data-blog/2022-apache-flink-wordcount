@@ -30,4 +30,4 @@ Redpanda is Apache Kafka® API-compatible. Any client that works with Kafka will
 
 * You can find our main project repo here: [Redpanda](https://github.com/redpanda-data/redpanda)
 * Join the [Redpanda Community on Slack](https://redpanda.com/slack)
-* [Sign up for Redpanda University](https://university.redpanda.com/) for free courses on data streaming and working with Redpanda.
+* [Sign up for Redpanda University](https://university.redpanda.com/) for free courses on data streaming and working with Redpanda
